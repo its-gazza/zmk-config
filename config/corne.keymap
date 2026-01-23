@@ -6,6 +6,7 @@
 
 #include <dt-bindings/zmk/reset.h>
 #include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 
 / {
@@ -64,6 +65,13 @@
             #binding-cells = <0>;
             bindings = <&none &kp MINUS &kp GT>;
             label = "PYTHON_TYPE_HINT";
+        };
+
+        vscode_split: vscode_split {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&hold_tap_enter LEFT_CONTROL BACKSLASH>;
+            label = "VSCODE_SPLIT";
         };
     };
 
@@ -170,10 +178,10 @@
         vscode {
             display-name = "VSCode";
             bindings = <
-&macro_terminal  &trans  &trans  &macro_code_block  &trans  &trans    &trans  &trans  &trans  &trans  &macro_palette  &trans
-&trans           &trans  &trans  &trans             &trans  &trans    &trans  &trans  &trans  &trans  &trans          &trans
-&trans           &trans  &trans  &trans             &trans  &trans    &trans  &trans  &trans  &trans  &macro_comment  &trans
-                                 &trans             &trans  &trans    &trans  &trans  &trans
+&macro_terminal  &trans      &trans      &macro_code_block  &trans  &trans    &trans  &trans  &trans  &trans  &macro_palette  &trans
+&trans           &trans      &trans      &trans             &trans  &trans    &trans  &trans  &trans  &trans  &vscode_split   &trans
+&bt BT_CLR       &bt BT_PRV  &bt BT_NXT  &trans             &trans  &trans    &trans  &trans  &trans  &trans  &macro_comment  &trans
+                                         &trans             &trans  &trans    &trans  &trans  &trans
             >;
 
             label = "VSC";
